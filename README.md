@@ -32,4 +32,4 @@ Siga estes passos para configurar e executar o projeto localmente:
 
 ## Créditos e Agradecimentos
 
-- [@omarciovsena](https://github.com/omarciovsena) por disponibilizar a bíblia através de uma API.
+- [@gabriellicar](https://github.com/gabriellicar) por disponibilizar a bíblia através de uma API - [BibleAPI](https://git.new/biblia).
