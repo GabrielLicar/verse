@@ -6,29 +6,21 @@ import {
   CardTitle,
 } from './ui/card'
 
-interface GetVerseResponse {
-  book: {
-    abbrev: { pt: string; en: string }
-    name: string
-    author: string
-    group: string
-    version: string
-  }
+type BibleAPI = {
+  book: string
+  abbrev: string
   chapter: number
-  number: number
+  verse: number
   text: string
 }
 
-async function getVerse(): Promise<GetVerseResponse> {
-  const response = await fetch(
-    'https://www.abibliadigital.com.br/api/verses/nvi/pt/random',
-    {
-      cache: 'force-cache',
-      next: {
-        tags: ['verse'],
-      },
+async function getVerse(): Promise<BibleAPI> {
+  const response = await fetch('https://bibleapi.onrender.com/random', {
+    cache: 'force-cache',
+    next: {
+      tags: ['verse'],
     },
-  )
+  })
 
   const verse = response.json()
 
@@ -36,17 +28,17 @@ async function getVerse(): Promise<GetVerseResponse> {
 }
 
 export async function DailyVerse() {
-  const { book, chapter, number, text } = await getVerse()
+  const { book, chapter, verse, text } = await getVerse()
 
   return (
     <div className="px-6 md:w-[75%] lg:w-[70%] xl:w-[50%]">
       <Card>
         <CardHeader>
           <CardTitle>
-            {book.name} - {chapter}:{number}
+            {book} - {chapter}:{verse}
           </CardTitle>
           <CardDescription>
-            Escrito por <span className="underline">{book.author}</span>
+            Escrito por <span className="underline">{book}</span>
           </CardDescription>
         </CardHeader>
         <CardContent>
